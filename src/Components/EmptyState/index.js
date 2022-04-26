@@ -1,7 +1,7 @@
 const EmptyState = () => {
   return (
     <div>
-      <h3>Add Data</h3>
+      <h1>Add Data</h1>
     </div>
   );
 };
