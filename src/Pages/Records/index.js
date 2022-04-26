@@ -1,8 +1,8 @@
-import { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Import components
 import Table from '../../Components/Table';
-
+import EmptyState from '../../Components/EmptyState';
 // Import utils
 import { fetchRecords } from './api';
 
@@ -13,16 +13,13 @@ const Records = () => {
   const getRecords = async () => {
     try {
       const data = await fetchRecords(randomNumber);
-      if (data) {
-        console.log(data);
-        setRecords([...records, data]);
-      }
+      setRecords([...records, data]);
     } catch (e) {
       console.log(e);
     }
   };
 
-  console.log(records);
+  // console.log(records);
 
   useEffect(() => {
     getRecords();
@@ -38,9 +35,15 @@ const Records = () => {
       >
         Add Record
       </button>
-      <Table />
+      {!records?.length ? (
+        <>
+          <EmptyState />
+        </>
+      ) : (
+        <Table records={records} />
+      )}
     </>
   );
 };
 
-export default Records;
+export default React.memo(Records);

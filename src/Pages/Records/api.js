@@ -1,6 +1,5 @@
-import { getMethod } from '../../fetch-api';
+import { getMethod } from '../../fetchWrapper';
 
-// const { getMethod } = fetchData();
 const fetchRecords = (count) => {
   return getMethod(count);
 };

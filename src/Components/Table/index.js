@@ -1,4 +1,5 @@
-const Table = () => {
+const Table = ({ records }) => {
+  // console.log(records);
   return (
     <table>
       <thead>
@@ -8,12 +9,16 @@ const Table = () => {
       </thead>
 
       <tbody>
-        <tr>
-          <td>Hi</td>
-          <td>
-            <button>Delete</button>
-          </td>
-        </tr>
+        {records?.map(({ name, created, birth_year }) => {
+          return (
+            <tr key={`${name}${birth_year}`}>
+              <td>{name}</td>
+              <td>
+                <button>Delete</button>
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
