@@ -1,0 +1,25 @@
+.empty-wrapper {
+  width: 100%;
+  height: 90%;
+  background: url('../../../public/assets/empty.webp');
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+h1 {
+  position: absolute;
+  left: 70px;
+  top: 342px;
+
+  animation: slideUp 5s;
+}
+@keyframes slideUp {
+  from {
+    top: 560px;
+    opacity: 0;
+  }
+  to {
+    top: 342px;
+    opacity: 1;
+  }
+}

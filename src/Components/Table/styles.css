@@ -1,0 +1,16 @@
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+tr {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid lightblue;
+  padding: 8px;
+  align-items: center;
+  margin: 8px 0;
+}

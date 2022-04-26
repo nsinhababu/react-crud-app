@@ -1,3 +1,5 @@
+import './styles.css';
+
 import { useState } from 'react';
 import Modal from '../Modal';
 const Table = ({ records, setRecords }) => {
