@@ -14,3 +14,14 @@ tr {
   align-items: center;
   margin: 8px 0;
 }
+
+.confirm-modal {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+}

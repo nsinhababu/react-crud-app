@@ -2,8 +2,8 @@ import './styles.css';
 
 import { useState } from 'react';
 import Modal from '../Modal';
-const Table = ({ records, setRecords }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Table = ({ records, setRecords, isOpen, setIsOpen }) => {
+  // const [isOpen, setIsOpen] = useState(false);
   const [recordId, setRecordId] = useState('');
   console.log(records);
 
@@ -39,15 +39,20 @@ const Table = ({ records, setRecords }) => {
         </tbody>
       </table>
       <Modal isOpen={isOpen}>
-        <button
-          onClick={() => {
-            setIsOpen(!isOpen);
-            setRecords(records.filter((record) => record.id !== recordId));
-          }}
-        >
-          Confirm
-        </button>
-        <button onClick={() => setIsOpen(false)}>Cancel</button>
+        <div className='confirm-modal'>
+          <h3>Are you sure you want to remove this character?</h3>
+          <div className='button-wrapper'>
+            <button
+              onClick={() => {
+                setIsOpen(!isOpen);
+                setRecords(records.filter((record) => record.id !== recordId));
+              }}
+            >
+              Confirm
+            </button>
+            <button onClick={() => setIsOpen(false)}>Cancel</button>
+          </div>
+        </div>
       </Modal>
     </>
   );

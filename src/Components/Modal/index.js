@@ -4,7 +4,9 @@ const Modal = ({ children, isOpen }) => {
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
-    <div className='modal-wrapper'>{children}</div>,
+    <div className='modal-wrapper'>
+      <div className='inner-wrapper'>{children}</div>
+    </div>,
 
     document.getElementById('modal-portal')
   );

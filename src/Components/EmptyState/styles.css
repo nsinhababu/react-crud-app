@@ -1,7 +1,6 @@
 .empty-wrapper {
   width: 100%;
   height: 90%;
-  background: url('../../../public/assets/empty.webp');
   background-size: cover;
   position: relative;
   overflow: hidden;
@@ -12,6 +11,20 @@ h1 {
   top: 342px;
 
   animation: slideUp 5s;
+}
+
+.empty-wrapper > img {
+  width: 170px;
+  position: absolute;
+  right: 12%;
+  top: 11%;
+  display: inline-block;
+}
+
+.empty-wrapper > p {
+  position: absolute;
+  bottom: 1%;
+  font-size: 14px;
 }
 @keyframes slideUp {
   from {

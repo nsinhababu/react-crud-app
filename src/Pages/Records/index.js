@@ -1,22 +1,23 @@
 import './styles.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 // Import components
 import Table from '../../Components/Table';
 import EmptyState from '../../Components/EmptyState';
+import Loader from '../../Components/Loader';
 // Import utils
 import { fetchRecords } from './api';
 
 const Records = () => {
   const [records, setRecords] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const getRecords = async (randomNumber) => {
     try {
       const data = await fetchRecords(randomNumber);
       setIsLoading(false);
-      const { name, mass } = data || {};
-      const id = name + mass;
+      const id = Date.now();
       data.id = id;
       setRecords([...records, data]);
     } catch (e) {
@@ -26,27 +27,37 @@ const Records = () => {
   };
 
   return (
-    <div className='wrapper'>
-      <div>
-        <button
-          disabled={isLoading}
-          onClick={() => {
-            setIsLoading(true);
-            const randomNumber = Math.ceil(Math.random() * 10);
-            getRecords(randomNumber);
-          }}
-        >
-          Add Record
-        </button>
+    <>
+      {isLoading && <Loader />}
+      <div className='wrapper'>
+        <div>
+          <h2>Star Wars</h2>
+          <button
+            className='add-record'
+            disabled={isLoading || isOpen}
+            onClick={() => {
+              setIsLoading(true);
+              const randomNumber = Math.ceil(Math.random() * 10);
+              getRecords(randomNumber);
+            }}
+          >
+            Add Record
+          </button>
+        </div>
+        {!records?.length && !isLoading ? (
+          <>
+            <EmptyState />
+          </>
+        ) : (
+          <Table
+            records={records}
+            setRecords={setRecords}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+          />
+        )}
       </div>
-      {!records?.length ? (
-        <>
-          <EmptyState />
-        </>
-      ) : (
-        <Table records={records} setRecords={setRecords} />
-      )}
-    </div>
+    </>
   );
 };
 
